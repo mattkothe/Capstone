@@ -3,17 +3,15 @@ import matplotlib.pyplot as plt
 import tensorflow as tf
 from Dataset import dataset_generator
 
-model = tf.keras.models.load_model('my_model_v2_trained.h5', compile=False)
-# Get a sample batch from the test generator
+model = tf.keras.models.load_model('capstone_model.hdf5', compile=False)
 
 model.compile(loss='categorical_crossentropy',
               optimizer='adam',
-              metrics="categorical_accuracy")
+              metrics="accuracy")
 
 test_generator = dataset_generator(25,25)
 test_images, test_labels = next(test_generator)
 
-# Predict the probabilities
 predicted_probabilities = model.predict(test_images)
 
 num_samples = 10

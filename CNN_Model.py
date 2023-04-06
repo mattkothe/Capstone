@@ -1,6 +1,8 @@
 from keras import Model
 from keras.layers import Input, Conv2D, MaxPooling2D, Flatten, Dense, Reshape, Softmax
 from Dataset import dataset_generator
+
+
 def create_circle_detection_model_2(num_circles=5):
     inputs = Input(shape=(512, 512, 3))
     x = Conv2D(32, (3, 3), activation='relu')(inputs)
@@ -29,6 +31,9 @@ train_dataset = dataset_generator(100)
 
 model = create_circle_detection_model_2()
 
-model.fit(train_dataset,epochs=50,steps_per_epoch=sample_size//batch_size,batch_size=batch_size)
+sample_size = 100
+batch_size = 8
+
+model.fit(train_dataset,epochs=50,steps_per_epoch=sample_size/batch_size,batch_size=batch_size)
 
 
