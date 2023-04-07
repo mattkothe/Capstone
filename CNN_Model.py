@@ -3,7 +3,7 @@ from keras.layers import Input, Conv2D, MaxPooling2D, Flatten, Dense, Reshape, S
 from Dataset import dataset_generator
 
 
-def create_circle_detection_model_2(num_circles=5):
+def cnn_model(num_circles=5):
     inputs = Input(shape=(512, 512, 3))
     x = Conv2D(32, (3, 3), activation='relu')(inputs)
     x = MaxPooling2D((2, 2))(x)
@@ -20,7 +20,6 @@ def create_circle_detection_model_2(num_circles=5):
     outputs = Softmax()(outputs)
     model = Model(inputs=inputs, outputs=outputs)
 
-    # Compile the model with appropriate loss function and optimizer
     model.compile(loss='categorical_cross_entropy',
                   optimizer='adam',
                   metrics=['accuracy'])
@@ -29,7 +28,7 @@ def create_circle_detection_model_2(num_circles=5):
 
 train_dataset = dataset_generator(100)
 
-model = create_circle_detection_model_2()
+model = cnn_model()
 
 sample_size = 100
 batch_size = 8

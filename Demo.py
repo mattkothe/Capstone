@@ -19,16 +19,13 @@ input_shape = (512, 512, 3)
 test_generator = dataset_generator(25, 25)
 X_test, y_test = next(test_generator)
 
-# Evaluate the model on the test data
 loss, *metrics = model.evaluate(X_test, y_test)
 
 
 print(predicted_probabilities[0])
 
-# Convert probabilities to class labels
 predicted_labels = np.argmax(predicted_probabilities, axis=-1)
 
-# Show the images, true labels, and predicted labels
 n_images_to_show = 5
 
 for i in range(n_images_to_show):
